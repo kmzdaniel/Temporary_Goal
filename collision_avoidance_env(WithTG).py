@@ -670,8 +670,6 @@ class CollisionAvoidanceEnv(gym.Env):
                                         prebestTT = bestTT
                                         bestTT = np.float64(np.array(Point(bestTT).midpoint(Point(tc.TmpGl_pnt[agent.id]))))
                                         line_ag2best_sign = Line(Point(agent.pos_global_frame),Point(bestTT))
-
-
                                         
                                         if (np.degrees(float(N((line_ag2TT).angle_between(line_ag2best_sign)))) <= 30):
                                             best_sign = True
@@ -690,7 +688,6 @@ class CollisionAvoidanceEnv(gym.Env):
                                                     round((agent.radius + self.agents[i].radius + Config.GETTING_CLOSE_RANGE),3):
                                                     sgn_all_agnt = sgn_all_agnt+1
                                                 else:
-
                                                     dstpd2agttl = Line(Point(agent.pos_global_frame),Point(TT)).distance(Point(self.agents[i].pos_global_frame))
                                                     distTT = (agent.radius + self.agents[i].radius + Config.GETTING_CLOSE_RANGE)**2 - dstpd2agttl**2
                                                     distag2pd = np.linalg.norm(self.agents[i].pos_global_frame - agent.pos_global_frame)
@@ -699,14 +696,9 @@ class CollisionAvoidanceEnv(gym.Env):
 
                                     tc.TmpGl_pnt[agent.id] = TT # add TT to TmpGl
                                     self.agents[agent.id].goal_global_frame  = TT
-                                
-
-
-
-                        
-
-
+                                    
                 # --------- end TPG ----------
+                
                 dict_obs = self.observation[agent_index]
                 all_actions[agent_index, :] = agent.policy.find_next_action(dict_obs, self.agents, agent_index)
 
